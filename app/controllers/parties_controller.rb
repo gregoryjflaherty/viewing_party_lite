@@ -3,8 +3,7 @@ class PartiesController < ApplicationController
   before_action :set_movie, only: [:new, :create]
   before_action :set_users, only: [:new]
 
-  def new
-  end
+  def new;end
 
   def create
     @party = Party.create!(

@@ -8,12 +8,15 @@ class UsersController < ApplicationController
 
   def create
     user = User.create(user_params)
-    redirect_to user_path(user)
+    if user.id != nil
+      redirect_to user_path(user)
+    else
+      redirect_to register_path
+      flash[:alert] = "#{user.errors.full_messages.to_sentence}"
+    end
   end
 
-  def show
-
-  end
+  def show;end
 
   private
     def user_params
