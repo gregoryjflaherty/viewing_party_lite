@@ -20,6 +20,11 @@ class UsersController < ApplicationController
 
   def login_form;end
 
+  def login_user
+    binding.pry
+    user = User.find_by(email: params[:email])
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
