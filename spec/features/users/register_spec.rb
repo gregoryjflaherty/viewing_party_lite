@@ -11,10 +11,11 @@ RSpec.describe 'Register Page' do
 
       fill_in 'Name', with: 'Logan'
       fill_in 'Email', with: 'l@gmail.com'
-      fill_in 'password', with: 'password'
-      fill_in 'password confirmation', with: 'password'
+      fill_in 'Password', with: 'password'
+      fill_in 'Password confirmation', with: 'password'
       click_on 'Register'
       logan = User.find_by(name:'Logan')
+  
       expect(current_path).to eq(user_path(logan))
     end
   end
