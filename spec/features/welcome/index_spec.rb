@@ -39,12 +39,9 @@ RSpec.describe 'Landing Page' do
   end
 
   describe 'lists all existing users' do
-    before(:each) do
-      @user1 = User.create!(name: "User 1", email: 'first_email@gmail.com' )
-      @user2 = User.create!(name: "User 2", email: 'second_email@yahoo.com' )
-    end
-
     it "has a section 'Existing Users:' which lists all users" do
+      @user1 = User.create!(name: "User 1", email: 'first_email@gmail.com', password:'1', password_confirmation: '1' )
+      @user2 = User.create!(name: "User 2", email: 'second_email@yahoo.com', password:'1', password_confirmation: '1' )
       visit root_path
       expect(current_path).to eq(root_path)
 
@@ -52,6 +49,19 @@ RSpec.describe 'Landing Page' do
         expect(page).to have_content('Existing Users:')
         expect(page).to have_link("first_email@gmail.com's Dashboard")
         expect(page).to have_link("second_email@yahoo.com's Dashboard")
+      end
+    end
+  end
+
+  describe 'has button to login' do
+    it "has a log in button that takes me to login page" do
+      visit root_path
+      expect(current_path).to eq(root_path)
+
+      within 'div.button' do
+        expect(page).to have_button('Login')
+        click_on 'Login'
+        expect(current_path).to eq('/login')
       end
     end
   end
