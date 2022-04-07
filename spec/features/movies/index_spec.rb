@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'movie results page' do
   before(:each) do
-    @user = User.create!(name: 'Kat', email: 'kat@yahoo.com')
+    @user = User.create!(name: 'Kat', email: 'kat@yahoo.com', password: 'test', password_confirmation: 'test')
   end
 
   it "has different title depending on search" do

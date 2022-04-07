@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Discover Page' do
   describe 'happy path' do
     before(:each) do
-      @user = User.create!(name: 'Trevor', email: 'trev@yahoo.com')
+      @user = User.create!(name: 'Trevor', email: 'trev@yahoo.com', password: 'test', password_confirmation: 'test')
     end
 
     it 'should have a button to discover top 20 rated movies' do

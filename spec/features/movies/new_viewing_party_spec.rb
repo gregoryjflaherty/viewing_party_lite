@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'new viewing party page' do
   before(:each) do
-    @user = User.create!(name: 'Kat', email: 'kat@yahoo.com')
-    @user2 = User.create!(name: 'G', email: 'g@gmail.com')
+    @user = User.create!(name: 'Kat', email: 'kat@yahoo.com', password: 'test', password_confirmation: 'test')
+    @user2 = User.create!(name: 'G', email: 'g@gmail.com', password: 'test1', password_confirmation: 'test1')
 
     @movie = @movie_2 = Movie.create!(api_id: 650)
   end
@@ -44,7 +44,7 @@ RSpec.describe 'new viewing party page' do
         expect(current_path).to eq(user_path(@user))
 
         expect(page).to have_content("Boyz n the Hood")
-        expect(page).to have_content("Monday, March 28, 2022")
+        expect(page).to have_content(Date.today.strftime('%A, %B %d, %Y'))
         expect(page).to have_content("Hosting")
       end
     end

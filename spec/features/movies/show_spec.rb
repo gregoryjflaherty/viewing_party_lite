@@ -4,7 +4,7 @@ RSpec.describe 'Movie Details Page' do
   describe 'has users name, discover movie button and viewing party list' do
     describe 'has buttons' do
       before(:each) do
-        @jax = User.create!(name: "Jackson", email: "j@jmail.com")
+        @jax = User.create!(name: "Jackson", email: "j@jmail.com", password: 'test', password_confirmation: 'test')
 
         @movie_1 = Movie.create!(api_id: 550)
         @movie_2 = Movie.create!(api_id: 600)

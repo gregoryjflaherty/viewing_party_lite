@@ -40,8 +40,8 @@ RSpec.describe 'Landing Page' do
 
   describe 'lists all existing users' do
     before(:each) do
-      @user1 = User.create!(name: "User 1", email: 'first_email@gmail.com' )
-      @user2 = User.create!(name: "User 2", email: 'second_email@yahoo.com' )
+      @user1 = User.create!(name: "User 1", email: 'first_email@gmail.com', password: 'test', password_confirmation: 'test')
+      @user2 = User.create!(name: "User 2", email: 'second_email@yahoo.com', password: 'test', password_confirmation: 'test')
     end
 
     it "has a section 'Existing Users:' which lists all users" do
