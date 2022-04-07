@@ -5,7 +5,7 @@
 </style>
 
 <div class="new_user">
-<%= form_with model: @user, local: true do |f| %>
+<%= form_with model: @user, method: 'post', local: true do |f| %>
   <p><%= f.label :name %></p>
   <p><%= f.text_field :name %></p> <br>
   <p><%= f.label :email %></p>

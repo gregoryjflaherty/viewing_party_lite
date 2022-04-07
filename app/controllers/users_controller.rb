@@ -10,8 +10,10 @@ class UsersController < ApplicationController
     if user.save
       redirect_to user_path(user)
     else
-      flash[:message] = user.errors.full_messages.to_sentence
+
       redirect_to register_path
+
+      flash[:alert] = "#{user.errors.full_messages.to_sentence}"
     end
   end
 
