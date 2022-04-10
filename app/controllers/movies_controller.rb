@@ -1,5 +1,4 @@
 class MoviesController < ApplicationController
-  before_action :save_movie, only: [:show]
 
   def show
     @user = User.find(params[:user_id])
@@ -24,12 +23,4 @@ class MoviesController < ApplicationController
       @search = params[:search]
     end
   end
-
-  private
-
-    def save_movie
-      if Movie.find_by('api_id = ?', params[:id]) == nil
-        Movie.create!(api_id: params[:id])
-      end
-    end
 end

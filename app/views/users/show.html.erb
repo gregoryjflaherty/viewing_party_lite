@@ -33,8 +33,8 @@
 </div>
 
 <div class="party_list">
-  <% @parties.each do |party| %>
-  <div class="parties-<%=party.id%>">
+  <% @parties.each_with_index do |party, index| %>
+  <div class="parties-<%="#{index}"%>">
     <div class="party_style">
       <br>
       <a href="default.asp">

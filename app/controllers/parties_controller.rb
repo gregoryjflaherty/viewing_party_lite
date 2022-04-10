@@ -6,11 +6,12 @@ class PartiesController < ApplicationController
   def new;end
 
   def create
+    @new_movie = create_movie
     @party = Party.create!(
       duration: params[:duration],
       date: params[:date],
       start: params[:start],
-      movie_id: create_movie.id,
+      movie_id: @new_movie.id,
     )
     set_host
     PartyFacade.invite_users(params[:invited].keys, @party) unless params[:invited].nil?
@@ -27,7 +28,7 @@ class PartiesController < ApplicationController
     end
 
     def create_movie
-      @new_movie = Movie.create!(api_id: params[:movie_id])
+      @new_movie = Movie.create!(id: params[:movie_id])
     end
 
     def set_users

@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe 'Discover Page' do
   describe 'happy path' do
     before(:each) do
-      @user = User.create!(name: 'Trevor', email: 'trev@yahoo.com')
+      User.destroy_all
+      @user = User.create!(name: 'Kat', email: 'kat@yahoo.com', password:"2", password_confirmation:"2")
     end
 
     it 'should have a button to discover top 20 rated movies' do
-
       visit user_discover_index_path(@user)
       VCR.use_cassette('top_20_api') do
         click_on 'Find Top Rated Movies'

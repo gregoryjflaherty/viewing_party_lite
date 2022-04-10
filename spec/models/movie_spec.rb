@@ -8,7 +8,7 @@ RSpec.describe Movie, type: :model do
 
   describe '.instance methods' do
     before(:each) do
-      @movie_1 = Movie.create!(api_id: 550)
+      @movie_1 = Movie.create!(id: 550)
     end
 
     describe '.show_poster' do
@@ -20,10 +20,8 @@ RSpec.describe Movie, type: :model do
 
     describe '.get_info' do
       it 'gets all api attributes' do
-        # VCR.use_cassette('fight_club_api') do
-          expect(@movie_1.get_info).to be_an_instance_of(MovieCall)
-          expect(@movie_1.get_info.title).to eq("Fight Club")
-        # end
+        expect(@movie_1.get_info).to be_an_instance_of(MovieCall)
+        expect(@movie_1.get_info.title).to eq("Fight Club")
       end
     end
   end

@@ -9,11 +9,11 @@ RSpec.describe Party, type: :model do
 
   describe ".instance methods" do
     before(:each) do
-      @jax = User.create!(name: "Jackson", email: "j@jmail.com")
-      @lady = User.create!(name: "LadyBug", email: "l@lmail.com")
+      @jax = User.create!(name: "Jackson", email: "j@jmail.com", password: "J", password_confirmation: "J")
+      @lady = User.create!(name: "LadyBug", email: "l@lmail.com", password: "J", password_confirmation: "J")
 
-      @movie_1 = Movie.create!(api_id: 550)
-      @movie_2 = Movie.create!(api_id: 600)
+      @movie_1 = Movie.create!(id: 550)
+      @movie_2 = Movie.create!(id: 600)
 
 
       @party_1 = Party.create!(movie_id: @movie_1.id, duration: 126, date: Date.new(2022, 3, 21), start: '7:00 pm')

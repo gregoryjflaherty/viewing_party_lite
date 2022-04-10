@@ -10,7 +10,7 @@ RSpec.describe 'movie results page' do
     VCR.use_cassette('fight_results_api') do
       fill_in "Search", with: "fight"
       click_on 'Find Movies'
-
+      
       expect(page).to have_content("Movie Results for: fight")
       expect(page).to_not have_content("Top Rated Movies")
     end

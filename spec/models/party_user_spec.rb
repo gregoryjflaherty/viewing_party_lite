@@ -6,8 +6,4 @@ RSpec.describe PartyUser, type: :model do
     it {belong_to(:user)}
     it {belong_to(:party)}
   end
-
-  describe "validations" do
-
-  end
 end
