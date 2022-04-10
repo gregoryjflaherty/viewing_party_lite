@@ -7,8 +7,10 @@ RSpec.describe 'Login Page' do
       @user1 = User.create!(name: "User 1", email: 'first_email@gmail.com', password:'1', password_confirmation: '1' )
       @user2 = User.create!(name: "User 2", email: 'second_email@yahoo.com', password:'1', password_confirmation: '1' )
       visit '/login'
+      #save_and_open_page
       fill_in 'Email', with:'first_email@gmail.com'
       fill_in 'Password', with: "1"
+      click_on 'Login'
       expect(current_path).to eq(user_path(@user1))
     end
   end

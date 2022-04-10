@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'movie results page' do
   before(:each) do
-    @user = User.create!(name: 'Kat', email: 'kat@yahoo.com')
+    User.destroy_all
+    @user = User.create!(name: 'Kat', email: 'kat@yahoo.com', password:"2", password_confirmation:"2")
   end
-
   it "has different title depending on search" do
     visit user_discover_index_path(@user)
     VCR.use_cassette('fight_results_api') do

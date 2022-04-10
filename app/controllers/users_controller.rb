@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     else
       redirect_to register_path
       flash[:alert] = "#{user.errors.full_messages.to_sentence}"
+      #flash[:alert] = "#{error_message(user.errors)}"
     end
   end
 
@@ -21,8 +22,13 @@ class UsersController < ApplicationController
   def login_form;end
 
   def login_user
-    binding.pry
     user = User.find_by(email: params[:email])
+    if user.authenticate(params[:password])
+      redirect_to "/users/#{user.id}"
+    else
+      flash[:error]="Wrong password"
+      render :login_form
+    end
   end
 
   private
