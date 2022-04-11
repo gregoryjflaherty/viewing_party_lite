@@ -16,7 +16,7 @@ RSpec.describe 'Register Page' do
       click_on 'Register'
       logan = User.find_by(name:'Logan')
 
-      expect(current_path).to eq(user_path(logan))
+      expect(current_path).to eq(dashboard_path)
     end
 
     it "displays an error message and redirects to register page

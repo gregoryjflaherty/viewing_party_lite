@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   get '/register', to:'users#new'
   post '/login', to:'users#login_user'
   get '/login', to:'users#login_form'
-  resources :users, except: [:new] do
+  get '/dashboard', to:'users#show'
+  post '/users', to:'users#create'
+  get '/users', to:'users#index'
+  namespace :users do
     resources :discover, only: [:index]
     resources :movies, only: [:index, :show] do
       get '/viewing-party/new', to:'parties#new'

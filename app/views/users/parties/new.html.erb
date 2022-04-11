@@ -1,6 +1,6 @@
 <div class="title">
   <h1>Create a Movie Party for <%= @movie.title %></h1>
-  <%= button_to 'Discover Page', user_discover_index_path(@user), :method => :get %><br>
+  <%= button_to 'Discover Page', users_discover_index_path, :method => :get %><br>
 </div>
  <div class="form">
    <h2>Viewing Party Details</h2>
@@ -21,5 +21,5 @@
     <%= f.label "#{user.name} (#{user.email})" %>
   <% end %><br>
    <%= f.submit "Create Party" %>
-<% end %>  
+<% end %>
 </div>

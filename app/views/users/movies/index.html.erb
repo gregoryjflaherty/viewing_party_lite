@@ -4,12 +4,12 @@
   <% else %>
     <h3><%= "Movie Results for: #{@search}" %></h3>
   <% end %>
-  <%= button_to 'Discover Page',user_discover_index_path(@user), method: :get%>
+  <%= button_to 'Discover Page',users_discover_index_path, method: :get%>
 </div>
 
 <div class="results">
   <%@results.each do |movie| %>
-    <%= link_to "#{movie.title}", user_movie_path(@user.id, movie.api_id, results: true) %>
+    <%= link_to "#{movie.title}", users_movie_path(movie.api_id, results: true) %>
     <%= "Vote Average: #{movie.vote_average}" %><br>
   <% end %>
 </div>

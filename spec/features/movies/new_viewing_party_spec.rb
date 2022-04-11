@@ -4,12 +4,16 @@ RSpec.describe 'new viewing party page' do
   before(:each) do
     User.destroy_all
     @user = User.create!(name: 'Kat', email: 'kat@yahoo.com', password:"2", password_confirmation:"2")
+    visit login_path(@user)
+    fill_in "Email", with:"#{@user.email}"
+    fill_in "Password", with:"#{@user.password}"
+    click_on "Login"
   end
 
   describe 'new viewing party' do
     VCR.use_cassette('boyz_n_the_hood') do
       it "has a button to create new party" do
-        visit user_discover_index_path(@user)
+        visit users_discover_index_path
         fill_in "Search", with: "boyz"
         click_on 'Find Movies'
         click_on 'Boyz n the Hood'
@@ -19,7 +23,7 @@ RSpec.describe 'new viewing party page' do
       end
 
       it "takes you to a form to create new party" do
-        visit user_discover_index_path(@user)
+        visit users_discover_index_path
         fill_in "Search", with: "boyz"
         click_on 'Find Movies'
         click_on 'Boyz n the Hood'
@@ -35,7 +39,7 @@ RSpec.describe 'new viewing party page' do
       end
 
       it "fills in a form and creates that party" do
-        visit user_discover_index_path(@user)
+        visit users_discover_index_path
         fill_in "Search", with: "boyz"
         click_on 'Find Movies'
         click_on 'Boyz n the Hood'
@@ -47,7 +51,7 @@ RSpec.describe 'new viewing party page' do
           click_on "Create Party"
         end
 
-        expect(current_path).to eq(user_path(@user))
+        expect(current_path).to eq(dashboard_path)
         @date = Time.now
         expect(page).to have_content("Boyz n the Hood")
         expect(page).to have_content("#{@date.strftime("%A, %B %d, %Y")}")

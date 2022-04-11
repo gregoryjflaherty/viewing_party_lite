@@ -6,7 +6,11 @@ RSpec.describe 'Movie Details Page' do
       before(:each) do
         User.destroy_all
         @user = User.create!(name: 'Kat', email: 'kat@yahoo.com', password:"2", password_confirmation:"2")
-        visit user_discover_index_path(@user)
+        visit login_path(@user)
+        fill_in "Email", with:"#{@user.email}"
+        fill_in "Password", with:"#{@user.password}"
+        click_on "Login"
+        visit users_discover_index_path
         fill_in "Search", with: "fight club"
         click_on 'Find Movies'
         click_on 'Fight Club'
@@ -21,7 +25,7 @@ RSpec.describe 'Movie Details Page' do
           within "div.button" do
             expect(page).to have_button("Discover Page")
             click_on "Discover Page"
-            expect(current_path).to eq(user_discover_index_path(@user))
+            expect(current_path).to eq(users_discover_index_path)
           end
         end
 

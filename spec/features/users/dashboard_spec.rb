@@ -5,31 +5,32 @@ RSpec.describe 'User Dashboard' do
     before(:each) do
       User.destroy_all
       @jax = User.create!(name: "Jackson", email: "j@jmail.com", password: "J", password_confirmation: "J")
+      visit login_path(@jax)
+      fill_in "Email", with:"#{@jax.email}"
+      fill_in "Password", with:"#{@jax.password}"
+      click_on "Login"
       @date = Time.now
     end
 
     it 'has users name' do
-      visit user_path(@jax)
-      expect(current_path).to eq(user_path(@jax))
-
+      visit dashboard_path
       within "div.name" do
         expect(page).to have_content("#{@jax.name}'s Dashboard")
       end
     end
 
     it 'has discover movie button' do
-      visit user_path(@jax)
-      expect(current_path).to eq(user_path(@jax))
+      visit dashboard_path
 
       within "div.discover_button" do
         expect(page).to have_button("Discover Movies")
         click_on "Discover Movies"
-        expect(current_path).to eq(user_discover_index_path(@jax))
+        expect(current_path).to eq(users_discover_index_path)
       end
     end
     VCR.use_cassette('top_20_api') do
       it 'lists viewing parties' do
-        visit user_discover_index_path(@jax)
+        visit users_discover_index_path
         fill_in "Search", with: "shaw"
         click_on 'Find Movies'
         click_on 'The Shawshank Redemption'
@@ -42,7 +43,7 @@ RSpec.describe 'User Dashboard' do
         end
 
         #@user = User.create!(name: 'Kat', email: 'kat@yahoo.com', password:"2", password_confirmation:"2")
-        visit user_discover_index_path(@jax)
+        visit users_discover_index_path
         fill_in "Search", with: "gab"
         click_on 'Find Movies'
         click_on "Gabriel's Inferno"
@@ -55,7 +56,7 @@ RSpec.describe 'User Dashboard' do
           click_on "Create Party"
         end
 
-        visit user_path(@jax)
+        visit dashboard_path
         expect(page).to have_content("Viewing Parties")
 
         # within "div.parties-1" do
