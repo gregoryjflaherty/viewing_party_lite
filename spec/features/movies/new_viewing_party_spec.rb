@@ -4,8 +4,12 @@ RSpec.describe 'new viewing party page' do
   before(:each) do
     @user = User.create!(name: 'Kat', email: 'kat@yahoo.com', password: 'test', password_confirmation: 'test')
     @user2 = User.create!(name: 'G', email: 'g@gmail.com', password: 'test1', password_confirmation: 'test1')
-
     @movie = @movie_2 = Movie.create!(api_id: 650)
+
+    visit login_path
+    fill_in :email, with: @user.email
+    fill_in :password, with: @user.password
+    click_on "Login"
   end
 
   describe 'new viewing party' do
@@ -39,9 +43,10 @@ RSpec.describe 'new viewing party page' do
           fill_in :date, with: Date.today.strftime('%Y-%m-%d')
           fill_in :start, with: '7:00 PM'
           click_on "Create Party"
+
         end
 
-        expect(current_path).to eq(user_path(@user))
+        expect(current_path).to eq(users_dashboard_path)
 
         expect(page).to have_content("Boyz n the Hood")
         expect(page).to have_content(Date.today.strftime('%A, %B %d, %Y'))

@@ -15,7 +15,7 @@ class PartiesController < ApplicationController
     )
     set_host
     PartyFacade.invite_users(params[:invited].keys, @party) unless params[:invited].nil?
-    redirect_to user_path(@user)
+    redirect_to users_dashboard_path(@user)
   end
 
   private
